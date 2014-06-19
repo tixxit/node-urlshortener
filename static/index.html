@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>URL Shortener</title>
+        <style>
+            #shorten > label[for="url"] {
+                display: block;
+            }
+
+            #url {
+                width: 35em;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Super Awesome URL Shortener</h1>
+
+        <form id="shorten" method="post" action="/">
+            <label for="url">Enter URL to shorten:</label>
+            <input id="url" name="url" type="text"/>
+            <input type="submit" value="Shorten" />
+        </form>
+
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/urlshortener.js"></script>
+        <script type="text/javascript">
+            $(document).on('ready', function() {
+                $('#shorten').submit(function(event) {
+                    event.preventDefault();
+
+                    var url = $('#url').val();
+                    UrlShortener.createShortenedUrl(url, function(err, url) {
+                        if (err) {
+                            alert('An error occurred shortening the URL: ' + err.message);
+                        } else {
+                            alert('Shortened URL: ' + url);
+                        }
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
