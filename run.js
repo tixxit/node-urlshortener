@@ -1,13 +1,13 @@
+var path = require('path');
 
 var UrlShortenerAPI = require('./lib/api');
 var UrlShortenerServer = require('./lib/server');
 
-var _config = {
-    'baseUrl': 'http://localhost:9000',
-    'port': 9000,
-    'storage': 'memory'
-};
+var _config = require(path.resolve(__dirname, 'config'));
 
+/*!
+ * Initialize both the shortener api and the server using the system configuration
+ */
 UrlShortenerAPI.init(_config, function(err) {
     if (err) {
         throw err;
@@ -18,6 +18,6 @@ UrlShortenerAPI.init(_config, function(err) {
             throw err;
         }
 
-        console.log('Server running on port %s', 9000);
+        console.log('Server running on port %s', _config.port);
     });
 });

@@ -4,6 +4,12 @@
     "dependencies": {
         "body-parser": "latest",
         "express": "latest",
+        "request": "latest",
+        "underscore": "latest",
         "valid-url": "latest"
+    },
+    "devDependencies": {
+        "grunt": "latest",
+        "grunt-mocha-test": "latest"
     }
 }
