@@ -4,6 +4,7 @@
     "dependencies": {
         "body-parser": "latest",
         "express": "latest",
+        "redis": "latest",
         "request": "latest",
         "underscore": "latest",
         "valid-url": "latest"
