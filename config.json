@@ -1,5 +1,11 @@
 {
     "baseUrl": "http://localhost:9001",
+    "initialHashSize": 4,
     "port": 9001,
-    "storage": "memory"
+    "storage": "memory",
+    "redis": {
+        "host": "127.0.0.1",
+        "port": 6379,
+        "dbIndex": 0
+    }
 }

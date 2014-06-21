@@ -6,8 +6,12 @@ var UrlShortenerServer = require('../lib/server');
 
 var _testConfig = {
     'baseUrl': 'http://my.test.server:8080',
+    'initialHashSize': 1,
     'port': 9001,
-    'storage': 'memory'
+    'storage': 'memory',
+    'redis': {
+        'dbIndex': 1
+    }
 };
 
 before(function(callback) {

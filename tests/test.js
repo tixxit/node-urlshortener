@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var assert = require('assert');
+var util = require('util');
 
 var TestUtil = require('./lib/util');
 
@@ -50,6 +51,22 @@ describe('#shorten', function() {
         ], function(shortenedUrls) {
             assert.strictEqual(shortenedUrls.length, 5);
             assert.strictEqual(_.uniq(shortenedUrls).length, 1);
+            return callback();
+        });
+    });
+
+    it('returns unique hashes for a sample size of 500', function(callback) {
+        this.timeout(5000);
+
+        // With a test initial hash size of 1 byte, we're guaranteed to get a collision with at
+        // least 256 urls
+        var urlsToShorten = _.map(_.range(500), function(i) {
+            return util.format('http://www.google.ca/%d', i);
+        });
+
+        TestUtil.assertValidShortenUrls(urlsToShorten, function(shortenedUrls) {
+            assert.strictEqual(shortenedUrls.length, 500);
+            assert.strictEqual(_.uniq(shortenedUrls).length, 500);
             return callback();
         });
     });
